@@ -27,4 +27,17 @@ export default styled.button`
             background: darkred;
         }
     `}
+    ${props => props.warning && css`
+        color: darkorange;
+        border: 2px solid darkorange;
+        &:hover {
+            background: darkorange;
+        }
+    `}
+    ${props => props.half && css`
+        width: 49%
+    `}
+    ${props => props.third && css`
+        width: 32%
+    `}
 `

@@ -24,7 +24,7 @@ export default function Users({users}) {
         }
       </ListGrid>
       <hr />
-      <Button onClick={() => router.push('user/new')}>Add new user</Button>
+      <Button onClick={() => router.push('user/add-edit/new')}>Add new user</Button>
     </>
   )
 }

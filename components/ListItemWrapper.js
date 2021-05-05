@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.div`
     margin: 1rem;
-    flex-basis: 40%;
+    flex-basis: 45%;
     padding: 1.5rem;
     text-align: left;
     color: inherit;

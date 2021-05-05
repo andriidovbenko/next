@@ -2,9 +2,17 @@ import axios from 'axios';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import Button from '../../components/Button'
+import GroupButtons from '../../components/GroupButtons'
 
 export default function User({user, projects}) {
-const router = useRouter();
+
+    const router = useRouter();
+
+    const onDeleteClick = () => {
+        axios.delete(`http://localhost:3000/api/person/${user.id}`)
+            .then(() => router.push('/'))
+    }
+
   return (
     <div>
         <div>
@@ -13,16 +21,24 @@ const router = useRouter();
             <p><b>Email:</b> { user.email}</p>
         </div>
         <hr />
-        <div>
-            <h3>Projects: </h3>
-            <ol>
-                {
-                    projects.map(project => (<li key={project.id}>{project.title}</li>))
-                }
-            </ol>
-        </div>
+        {
+            projects && projects.length !== 0 && (
+                <div>
+                    <h3>Projects: </h3>
+                    <ol>
+                        {
+                            projects.map(project => (<li key={project.id}>{project.title}</li>))
+                        }
+                    </ol>
+                </div>
+            )
+        }
         <br/>
-        <Button onClick={() => router.push('/')}>Back</Button>
+        <GroupButtons>
+            <Button danger third onClick={() => onDeleteClick()}>Delete</Button>
+            <Button third onClick={() => router.push('/')}>Back</Button>
+            <Button warning third onClick={() => router.push(`/user/add-edit/${user.id}`)}>Edit</Button>
+        </GroupButtons>
     </div>
   )
 }
